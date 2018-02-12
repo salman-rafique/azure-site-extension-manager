@@ -14,7 +14,8 @@ AppDynamicd Azure Site Extension Manager requires powershell version 5 or newer 
 ### How to use
 
 1. Download file "AppD-Azure-SiteExtension-Manager.ps1" and copy in an empty folder.
-2. Open file to edit and locate `#region CONFIG` and optionally provide appropriate values as highlighted here- 
+2. Open file `script/ps/AppD-Manager-Azure-SiteExtension.ps1` to edit 
+3. locate `#region CONFIG` and optionally provide appropriate values as highlighted here- 
 ```
  $global:ResourceGroupName = "" 
  $global:WebAppName = ""
@@ -41,13 +42,13 @@ AppDynamicd Azure Site Extension Manager requires powershell version 5 or newer 
 ```
    :bulb: We can also provide or change these values while calling cmdlet. 
 
-3. Save file and run following command in powershell.exe window- 
+4. Save file and run following command in powershell.exe window- 
 
    `Import-Module .\Azure-siteExtension.ps1`
  
    :bulb: This will verify powershell version and azure session. Powershell will popup azure login window if user is not logged in to azure session.
 
-4. Now we can run any of the following commands-
+5. Now we can run any of the following commands-
       - AppDAzureSiteExtension-Install
       - AppDAzureSiteExtension-Uninstall
       - AppDAzureSiteExtension-UpdateAppSetting
