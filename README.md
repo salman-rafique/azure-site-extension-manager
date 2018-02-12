@@ -130,7 +130,7 @@ AppDApplicationName | String | App name for appd controller | -AppDApplicationNa
 Please Note, 
 - All these parameters can be set in CONFIG section as previously mentioned. 
 - Parameter value passed with command will get precedence over value set in CONFIG section.
-- By default *DryRun mode is ON*. In this mode no actual changes will be made. Switch -NoDryRun is needed to make actual changes. We recommend to run with Dry mode first to make sure the settings are correct. 
+- By default **DryRun mode is ON**. In this mode no actual changes will be made. Switch -NoDryRun is needed to make actual changes. We recommend to run with Dry mode first to make sure the settings are correct and to avoid accidental changes. 
 - By default all execution is getting recorded in file "AppD-AzureSiteExtension.log", in same directory as ps1 script file. This can be changed via "OutFileName" in CONFIG section. The file size is not capped, it needs to be checked. 
 - For more details about AppDynamics controller related configuration properties, please check "Configure the agent using environment variables" in following doc- 
 https://docs.appdynamics.com/display/PRO43/Install+the+AppDynamics+Azure+Site+Extension 
