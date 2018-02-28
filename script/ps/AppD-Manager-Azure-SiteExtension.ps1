@@ -33,28 +33,28 @@
 
 #region CONFIG
 
-$global:ResourceGroupName = "AzureLearning" 
-$global:WebAppName = "ReproWebApp2016"
+$global:ResourceGroupName = "YourResourceGroup" 
+$global:WebAppName = "YourWebAppName"
 ##  Provide exact slotname to install appdynamics site extension on any specific
 ##  deployment slot. Empty string will target main webapp.
 
 $global:SlotName = "" 
 
-$global:AppDAgentID = "AppDynamics.WindowsAzure.SiteExtension.4.3.Release"
+$global:AppDAgentID = "AppDynamics.WindowsAzure.SiteExtension.4.4.Release"
 ##  We can use different agent id to install different agent versions. 
-##  Following value need to be used for agent version 4.4
-##                    "AppDynamics.WindowsAzure.SiteExtension.4.4.Release"
+##  4.3 controllers should use the 4.3 agent
+##                    "AppDynamics.WindowsAzure.SiteExtension.4.3.Release"
 
 ##  AppDynamics agent configuration properties. 
 ##  Check "Configure the agent using environment variables" in following doc-
 ##  https://docs.appdynamics.com/display/PRO43/Install+the+AppDynamics+Azure+Site+Extension 
 
-$global:AppDHostName="ec2-35-164-65-194.us-west-2.compute.amazonaws.com" 
+$global:AppDHostName="yourcontroller url" #hostname.domain.com - do not use protocol
 $global:AppDPort="" 
-$global:AppDSslEnabled="False" 
-$global:AppDAccountName="customer1" 
-$global:AppDAccountAccessKey="f4c5b0b2-f0f5-4a5f-b860-bfb3681ca57c" 
-$global:AppDApplicationName="Anurag" 
+$global:AppDSslEnabled="" #true or false 443 use true
+$global:AppDAccountName="" #customer account name from license page in your controller
+$global:AppDAccountAccessKey="" #Access key from license page in your controller
+$global:AppDApplicationName="" #your application name
 
 #--- Execution Properties ---#
 $Verbose = $false
