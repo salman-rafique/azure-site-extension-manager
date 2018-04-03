@@ -40,6 +40,9 @@ $global:WebAppName = "YourWebAppName"
 
 $global:SlotName = "" 
 
+## We can leave this empty to use default subscription
+$global:SubscriptionName =""
+
 $global:AppDAgentID = "AppDynamics.WindowsAzure.SiteExtension.4.4.Release"
 ##  We can use different agent id to install different agent versions. 
 ##  4.3 controllers should use the 4.3 agent
@@ -146,6 +149,11 @@ function __VerifySession{
         $context = Login-AzureRmAccount
 
         $str = $context.Context.Account
+        
+        if($global:SubscriptionName)
+        {
+            Select-AzureRmSubscription -SubscriptionName $global:SubscriptionName
+        }
 
     }
     else{
