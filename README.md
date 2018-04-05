@@ -23,6 +23,9 @@ AppDynamicd Azure Site Extension Manager requires powershell version 5 or newer 
  ##  deployment slot. Empty string will target main webapp.
 
  $global:SlotName = "" 
+ 
+ ## MSDN Subscription name. Leave empty to use default subscription
+ $global:SubscriptionName = ""
 
  $global:AppDAgentID = "AppDynamics.WindowsAzure.SiteExtension.4.3.Release"
  ##  We can use different agent id to install different agent versions. 
@@ -61,6 +64,7 @@ AppDAzureSiteExtension-Install
 -Verbose 
 -NoDryRun 
 -ResourceGroupName "..." 
+-SubscriptionName ""
 -WebAppName "..." 
 -SlotName "" 
 -AppDHostName "..." 
@@ -74,10 +78,11 @@ AppDAzureSiteExtension-Install
 #### AppDAzureSiteExtension-Uninstall
 This cmdlet will try to remove appdynamics azure site extension and then restart webapp instance. Following is usage of this cmdlet with all optional parameters.
 ```
-AppDAzureSiteExtension-Install 
+AppDAzureSiteExtension-UnInstall 
 -Verbose 
 -NoDryRun 
 -ResourceGroupName "..." 
+-SubscriptionName ""
 -WebAppName "..." 
 -SlotName "" 
 ```
@@ -89,6 +94,7 @@ AppDAzureSiteExtension-UpdateAppSetting
 -Verbose 
 -NoDryRun 
 -ResourceGroupName "..." 
+-SubscriptionName ""
 -WebAppName "..." 
 -SlotName "" 
 -AppDHostName "..." 
@@ -106,6 +112,7 @@ AppDAzureSiteExtension-Install
 -Verbose 
 -NoDryRun 
 -ResourceGroupName "..." 
+-SubscriptionName ""
 -WebAppName "..." 
 -SlotName "" 
 ```
@@ -126,6 +133,7 @@ AppDSslEnabled | String | To connect using http or https | -AppDSslEnabled "true
 AppDAccountName | String | account name for appd controller | -AppDAccountName "account"   
 AppDAccountAccessKey | String | account key for appd controller | -AppDAccountAccessKey "some-guid"  
 AppDApplicationName | String | App name for appd controller | -AppDApplicationName "myapp"   
+SubscriptionName | String | MSDN Subscription name | -SubscriptionName "Your MSDN Subscription Name"
 
 
 Please Note, 
