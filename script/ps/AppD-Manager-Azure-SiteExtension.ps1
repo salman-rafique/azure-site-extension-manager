@@ -40,8 +40,8 @@ $global:WebAppName = "YourWebAppName"
 
 $global:SlotName = "" 
 
-## We can leave this empty to use default subscription
-$global:SubscriptionName =""
+## Provide MSDN subscription name
+$global:SubscriptionName = "Your-MSDN-SubscriptionName"
 
 $global:AppDAgentID = "AppDynamics.WindowsAzure.SiteExtension.4.4.Release"
 ##  We can use different agent id to install different agent versions. 
@@ -176,7 +176,7 @@ function __ImportSettingFile{
     
     if($SlotName){
 
-    [xml]$publishFileXml = Get-AzureRmWebAppSlotPublishingProfile -ResourceGroupName $ResourceGroupName -Name $WebAppName -Slot $SlotName -Format "Ftp" -OutputFile $publishFile
+    [xml]$publishFileXml = Get-AzureRmWebAppSlotPublishingProfile -ResourceGroupName $ResourceGroupName -Name $WebAppName -Slot $SlotName -Format "Ftp" -OutputFile $publishFile 
     
     }
     else{
@@ -455,6 +455,10 @@ Param(
     __WriteMessage "  slot=$SlotName "
     }
 
+    if($SubscriptionName){
+    __WriteMessage "  SubscriptionName=$SubscriptionName "
+    }
+
     if($all){
 
         __WriteMessage "  hostName=$AppDHostName "
@@ -504,7 +508,8 @@ function GLOBAL:AppDAzureSiteExtension-Install{
         [String] $AppDSslEnabled=$AppDSslEnabled,
         [String] $AppDAccountName=$AppDAccountName,
         [String] $AppDAccountAccessKey=$AppDAccountAccessKey,
-        [String] $AppDApplicationName=$AppDApplicationName
+        [String] $AppDApplicationName=$AppDApplicationName,
+        [String] $SubscriptionName=$SubscriptionName
     )
 
     $DryRun = !$NoDryRun
@@ -512,7 +517,7 @@ function GLOBAL:AppDAzureSiteExtension-Install{
     __PrintParameters
     __ValidateParameters
 
-    __WriteMessage "*** Initializing azure site extension installation for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName" -insertEmptyLine Green
+    __WriteMessage "*** Initializing azure site extension installation for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName SubscriptionName= $SubscriptionName" -insertEmptyLine Green
 
     try{
 
@@ -547,14 +552,15 @@ function GLOBAL:AppDAzureSiteExtension-Uninstall{
         [switch] $NoDryRun,
         [String] $ResourceGroupName=$ResourceGroupName, 
         [String] $WebAppName=$WebAppName,
-        [String] $SlotName=$SlotName
+        [String] $SlotName=$SlotName,
+        [String] $SubscriptionName=$SubscriptionName
     )
 
     $DryRun = !$NoDryRun
 
     __PrintParameters -all:$false
 
-    __WriteMessage "*** Initializing azure site extension uninstallation for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName" -insertEmptyLine Green
+    __WriteMessage "*** Initializing azure site extension uninstallation for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName SubscriptionName= $SubscriptionName" -insertEmptyLine Green
 
     try{
 
@@ -591,13 +597,14 @@ function GLOBAL:AppDAzureSiteExtension-UpdateAppSetting{
         [String] $AppDSslEnabled=$AppDSslEnabled,
         [String] $AppDAccountName=$AppDAccountName,
         [String] $AppDAccountAccessKey=$AppDAccountAccessKey,
-        [String] $AppDApplicationName=$AppDApplicationName
+        [String] $AppDApplicationName=$AppDApplicationName,
+        [String] $SubscriptionName=$SubscriptionName
     )
     $DryRun = !$NoDryRun
 
     __PrintParameters
 
-    __WriteMessage "*** Updating app settings for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName" -insertEmptyLine Green
+    __WriteMessage "*** Updating app settings for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName SubscriptionName= $SubscriptionName" -insertEmptyLine Green
 
     try{
 
@@ -623,10 +630,11 @@ function GLOBAL:AppDAzureSiteExtension-Status{
         [switch] $Verbose=$Verbose,
         [String] $ResourceGroupName=$ResourceGroupName, 
         [String] $WebAppName=$WebAppName,
-        [String] $SlotName=$SlotName
+        [String] $SlotName=$SlotName,
+        [String] $SubscriptionName=$SubscriptionName
     )
 
-    __WriteMessage "*** Checking status of AppD Azure Site Extension for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName" -insertEmptyLine Green
+    __WriteMessage "*** Checking status of AppD Azure Site Extension for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName SubscriptionName= $SubscriptionName " -insertEmptyLine Green
 
     try{
 
@@ -634,11 +642,11 @@ function GLOBAL:AppDAzureSiteExtension-Status{
     
         $creds = __ImportSettingFile 
 
-        __WriteMessage "*** Checking appd site extension for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName" -insertEmptyLine Green
+        __WriteMessage "*** Checking appd site extension for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName SubscriptionName= $SubscriptionName" -insertEmptyLine Green
 
         $status = __CheckStatus $creds
 
-        __WriteMessage "*** AppD Site extension is $status for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName" -insertEmptyLine Green
+        __WriteMessage "*** AppD Site extension is $status for ResourceGroup= $ResourceGroupName WebApp= $WebAppName $SlotName SubscriptionName= $SubscriptionName " -insertEmptyLine Green
 
         }
     catch{
