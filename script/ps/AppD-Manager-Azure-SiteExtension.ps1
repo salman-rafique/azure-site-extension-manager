@@ -33,8 +33,8 @@
 
 #region CONFIG
 
-$global:ResourceGroupName = "YourResourceGroup" 
-$global:WebAppName = "YourWebAppName"
+$global:ResourceGroupName = "" 
+$global:WebAppName = ""
 ##  Provide exact slotname to install appdynamics site extension on any specific
 ##  deployment slot. Empty string will target main webapp.
 
@@ -54,7 +54,7 @@ $global:AppDAgentID = "AppDynamics.WindowsAzure.SiteExtension.4.4.Release"
 ##  Check "Configure the agent using environment variables" in following doc-
 ##  https://docs.appdynamics.com/display/PRO43/Install+the+AppDynamics+Azure+Site+Extension 
 
-$global:AppDHostName="yourcontroller url" #hostname.domain.com - do not use protocol
+$global:AppDHostName="" #hostname.domain.com - do not use protocol
 $global:AppDPort="" 
 $global:AppDSslEnabled="" #true or false 443 use true
 $global:AppDAccountName="" #customer account name from license page in your controller
@@ -89,7 +89,7 @@ function __WriteMessage{
             
         }
 
-        $str = (Get-Date).ToString() +" "+ $me
+        $str = (Get-Date).ToString() +" "+ $m
 
         if($append){
 
