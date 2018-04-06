@@ -17,15 +17,15 @@ AppDynamics Azure Site Extension Manager requires powershell version 5 or newer 
 2. Open file `script/ps/AppD-Manager-Azure-SiteExtension.ps1` to edit 
 3. locate `#region CONFIG` and optionally provide appropriate values as highlighted here- 
 ```
- $global:ResourceGroupName = "YourResourceGroup" 
- $global:WebAppName = "YourWebApp"
+ $global:ResourceGroupName = "" 
+ $global:WebAppName = ""
  ##  Provide exact slotname to install appdynamics site extension on any specific
  ##  deployment slot. Empty string will target main webapp.
 
  $global:SlotName = "" 
 
  ## Provide MSDN subscription name
-$global:SubscriptionName = "Your-MSDN-SubscriptionName"
+$global:SubscriptionName = ""
 
  $global:AppDAgentID = "AppDynamics.WindowsAzure.SiteExtension.4.3.Release"
  ##  We can use different agent id to install different agent versions. 
